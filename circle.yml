@@ -1,0 +1,19 @@
+machine:
+  environment:
+    # Set fake scheme and workspace so that CircleCI will continue without errors.
+    # See https://discuss.circleci.com/t/is-there-a-way-to-force-building-on-os-x/4079/8
+    XCODE_SCHEME: fake
+    XCODE_WORKSPACE: fake
+test:
+  override:
+    # Symlink the tap into it's proper location so it's picked up on install.
+    # It seems there isn't a better way to do this.
+    - ln -s $(pwd) /usr/local/Homebrew/Library/Taps/homebrew/.
+    # Install the latest version of ahoy.
+    - |
+      brew install ahoy
+      brew info ahoy
+      brew uninstall ahoy
+    # Install the master branch of ahoy.
+    - brew install --HEAD ahoy
+
