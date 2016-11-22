@@ -15,12 +15,16 @@ class Ahoy < Formula
   def install
     # Build from the latest verison of ahoy.
     if build.head?
+      ENV["XC_OS"] = "darwin"
+      ENV["XC_ARCH"] = MacOS.prefer_64_bit? ? "amd64" : "386"
       ENV["GOPATH"] = buildpath
       path = buildpath/"src/github.com/ahoy-cli/ahoy"
-      path.install Dir["*"]
-      Language::Go.stage_deps resources, buildpath/"src"
-      system "go", "build", "-o", "bin/ahoy", "github.com/ahoy-cli/ahoy"
-      bin.install "bin/ahoy"
+      path.install Dir["{*,.git}"]
+      #Language::Go.stage_deps buildpath/"src"
+      cd path do
+        system "bash", "build.sh"
+        bin.install "ahoy"
+      end
     else
       system "mv", "ahoy-darwin-amd64", "ahoy"
       bin.install "ahoy"
