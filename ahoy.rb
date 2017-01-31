@@ -1,5 +1,5 @@
 class Ahoy < Formula
-  desc "Ahoy - Create aliases for commands on docker, ssh, and your local machine."
+  desc "Creates self documenting cli programs from commands in yaml files."
   homepage "http://www.ahoycli.com/"
   url "https://github.com/ahoy-cli/ahoy/releases/download/2.0.0-beta1/ahoy-bin-darwin-amd64"
   version "2.0.0-beta1"
