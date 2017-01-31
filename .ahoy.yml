@@ -1,0 +1,5 @@
+ahoyapi: v2
+commands:
+  audit:
+    usage: Performs an audit of this homebrew formula.
+    cmd: brew audit --new-formula ahoy
