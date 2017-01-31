@@ -6,6 +6,8 @@ machine:
     XCODE_WORKSPACE: fake
     # Ensure that homebrew doesn't update or else it will override our tap. (I think)
     HOMEBREW_NO_AUTO_UPDATE: 1
+    # Make sure that the path to homebrew is set so the ahoy file can be found.
+    PATH: '$PATH:/usr/local/bin'
 test:
   override:
     # Symlink the tap into it's proper location so it's picked up on install.
