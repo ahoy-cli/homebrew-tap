@@ -3,9 +3,9 @@ require "language/go"
 class Ahoy < Formula
   desc "Ahoy - Create aliases for commands on docker, ssh, and your local machine."
   homepage "http://www.ahoycli.com/"
-  url "https://github.com/ahoy-cli/ahoy/releases/download/1.1.0/ahoy-darwin-amd64"
-  version "1.1.0"
-  sha256 "8bb1c76e28ca499f2dcadafdec7776ca3bd4e85c45c8d4f9f19220d5d4f233cf"
+  url "https://github.com/ahoy-cli/ahoy/releases/download/2.0.0-beta1/ahoy-bin-darwin-amd64"
+  version "2.0.0-beta1"
+  sha256 "9c06abef1b819f1d67c63d210cb8d232348e13151269d3bffd306d5a26eee148"
 
   head "https://github.com/ahoy-cli/ahoy.git",
     :branch => "master"
@@ -26,7 +26,7 @@ class Ahoy < Formula
         bin.install "ahoy"
       end
     else
-      system "mv", "ahoy-darwin-amd64", "ahoy"
+      system "mv", "ahoy-bin-darwin-amd64", "ahoy"
       bin.install "ahoy"
     end
   end
