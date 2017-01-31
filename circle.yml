@@ -8,6 +8,7 @@ machine:
     HOMEBREW_NO_AUTO_UPDATE: 1
     # Make sure that the path to homebrew is set so the ahoy file can be found.
     PATH: '$PATH:/usr/local/bin'
+    AHOY_RELEASE_VERSION: 2.0.0-beta1
 test:
   override:
     # Symlink the tap into it's proper location so it's picked up on install.
@@ -17,8 +18,14 @@ test:
     - |
       brew install ahoy
       brew info ahoy
-      brew uninstall ahoy
-      ahoy --version
+      version=`ahoy --version`
+      echo "$version"
+      if [ "$version" != "$AHOY_RELEASE_VERSION" ]; then
+        echo "Versions don't match: [$version] != [$AHOY_RELEASE_VERSION]"
+      else
+        echo "Versions match: [$version]"
+      fi
+    - brew uninstall ahoy
     # Install the master branch of ahoy.
     - |
       brew install --HEAD ahoy
