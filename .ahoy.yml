@@ -1,0 +1,24 @@
+ahoyapi: v2
+commands:
+  audit:
+    usage: Performs an audit of this homebrew formula.
+    cmd: brew audit --new-formula ahoy
+  update:
+    usage: Update the release version.
+    cmd: |
+      if [ -z "$1" ]; then
+        echo "Tag missing: You need to use a release tag from github."
+        exit 1
+      fi
+      echo "[INFO] Fetching $1 from github.."
+      url="https://github.com/ahoy-cli/ahoy/releases/download/$1/ahoy-bin-darwin-amd64"
+      if ! curl --output /dev/null --silent --head --fail "$url"; then
+        echo "[ERROR] Release doesn't exist at [$url]"
+        exit 1;
+      fi
+      hash=`curl -Ls "https://github.com/ahoy-cli/ahoy/releases/download/$1/ahoy-bin-darwin-amd64" | shasum -a 256 | awk '{ print $1}'`
+      echo "[INFO] HASH: $hash"
+      sed -i -e "s|^  url.*|  url \"$url\"|g" ahoy.rb
+      sed -i -e "s|^  version.*|  version \"$1\"|g" ahoy.rb
+      sed -i -e "s|^  sha256.*|  sha256 \"$hash\"|g" ahoy.rb
+      echo "[DONE] Updated ahoy.rb with version $1"

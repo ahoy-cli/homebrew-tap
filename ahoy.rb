@@ -1,7 +1,5 @@
-require "language/go"
-
 class Ahoy < Formula
-  desc "Ahoy - Create aliases for commands on docker, ssh, and your local machine."
+  desc "Creates self documenting cli programs from commands in yaml files."
   homepage "http://www.ahoycli.com/"
   url "https://github.com/ahoy-cli/ahoy/releases/download/2.0.0-beta1/ahoy-bin-darwin-amd64"
   version "2.0.0-beta1"
@@ -11,6 +9,21 @@ class Ahoy < Formula
     :branch => "master"
 
   depends_on "go" => :build
+
+  def caveats; <<-EOS.undent
+
+    ===== UPGRADING FROM 1.x TO 2.x =====
+
+    If you are upgrading from ahoy 1.x, note that you'll
+    need to upgrade your ahoyapi settings in your .ahoy.yml
+    files to 'v2' instead of 'v1'.
+
+    See other changes at:
+
+    https://github.com/ahoy-cli/ahoy#version-2
+
+    EOS
+  end
 
   def install
     # Build from the latest verison of ahoy.
@@ -26,8 +39,12 @@ class Ahoy < Formula
         bin.install "ahoy"
       end
     else
-      system "mv", "ahoy-bin-darwin-amd64", "ahoy"
+      mv "ahoy-bin-darwin-amd64", "ahoy"
       bin.install "ahoy"
     end
+  end
+
+  test do
+    system "#{bin}/ahoy", "--version"
   end
 end
