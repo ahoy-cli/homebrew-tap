@@ -11,11 +11,17 @@ class Ahoy < Formula
   depends_on "go" => :build
 
   def caveats; <<-EOS.undent
-    ===== UPGRADING TO 2.x =====
+
+    ===== UPGRADING FROM 1.x TO 2.x =====
+
     If you are upgrading from ahoy 1.x, note that you'll
     need to upgrade your ahoyapi settings in your .ahoy.yml
-    files to 'v2' instead of 'v1'. See other changes at
+    files to 'v2' instead of 'v1'.
+
+    See other changes at:
+
     https://github.com/ahoy-cli/ahoy#version-2
+
     EOS
   end
 
