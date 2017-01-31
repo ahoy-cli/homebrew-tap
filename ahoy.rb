@@ -1,5 +1,3 @@
-require "language/go"
-
 class Ahoy < Formula
   desc "Ahoy - Create aliases for commands on docker, ssh, and your local machine."
   homepage "http://www.ahoycli.com/"
