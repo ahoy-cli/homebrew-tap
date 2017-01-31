@@ -33,8 +33,12 @@ class Ahoy < Formula
         bin.install "ahoy"
       end
     else
-      system "mv", "ahoy-bin-darwin-amd64", "ahoy"
+      mv "ahoy-bin-darwin-amd64", "ahoy"
       bin.install "ahoy"
     end
+  end
+
+  test do
+    system "#{bin}/ahoy", "--version"
   end
 end
