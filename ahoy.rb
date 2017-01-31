@@ -10,7 +10,7 @@ class Ahoy < Formula
 
   depends_on "go" => :build
 
-  def message; <<-EOS.udent
+  def caveats; <<-EOS.undent
     ===== UPGRADING TO 2.x =====
     If you are upgrading from ahoy 1.x, note that you'll
     need to upgrade your ahoyapi settings in your .ahoy.yml
