@@ -10,6 +10,15 @@ class Ahoy < Formula
 
   depends_on "go" => :build
 
+  def message; <<-EOS.udent
+    ===== UPGRADING TO 2.x =====
+    If you are upgrading from ahoy 1.x, note that you'll
+    need to upgrade your ahoyapi settings in your .ahoy.yml
+    files to 'v2' instead of 'v1'. See other changes at
+    https://github.com/ahoy-cli/ahoy#version-2
+    EOS
+  end
+
   def install
     # Build from the latest verison of ahoy.
     if build.head?
