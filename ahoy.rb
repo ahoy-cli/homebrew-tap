@@ -10,7 +10,7 @@ class Ahoy < Formula
 
   depends_on "go" => :build
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOPLIST
 
     ===== UPGRADING FROM 1.x TO 2.x =====
 
