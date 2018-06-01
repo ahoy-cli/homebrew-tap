@@ -22,7 +22,7 @@ class Ahoy < Formula
 
     https://github.com/ahoy-cli/ahoy
 
-    EOS
+    EOPLIST
   end
 
   def install
